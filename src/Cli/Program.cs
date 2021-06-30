@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-
+using IterationZero.Workspace.Cli.Commands.Init;
 using McMaster.Extensions.CommandLineUtils;
 
 namespace IterationZero.Workspace.Cli
@@ -27,7 +27,7 @@ namespace IterationZero.Workspace.Cli
             var application = new CommandLineApplication();
             application.HelpOption("-h|--help");
 
-            //application.AddProjectCommand();
+            application.AddInitCommand();
 
             application.OnExecute(() =>
             {
