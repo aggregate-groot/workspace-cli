@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <AssemblyName>IterationZero.Workspace.Cli.Commands</AssemblyName>
-        <RootNamespace>IterationZero.Workspace.Cli.Commands</RootNamespace>
+        <AssemblyName>AggregateGroot.Workspace.Cli.Commands</AssemblyName>
+        <RootNamespace>AggregateGroot.Workspace.Cli.Commands</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

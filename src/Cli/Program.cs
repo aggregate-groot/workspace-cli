@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using IterationZero.Workspace.Cli.Commands.Init;
+using AggregateGroot.Workspace.Cli.Commands.Init;
 using McMaster.Extensions.CommandLineUtils;
 
-namespace IterationZero.Workspace.Cli
+namespace AggregateGroot.Workspace.Cli
 {
     /// <summary>
     /// Represents the main command line application.

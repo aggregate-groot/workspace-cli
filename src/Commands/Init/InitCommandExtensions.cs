@@ -1,6 +1,6 @@
 ﻿using McMaster.Extensions.CommandLineUtils;
 
-namespace IterationZero.Workspace.Cli.Commands.Init
+namespace AggregateGroot.Workspace.Cli.Commands.Init
 {
     /// <summary>
     /// Extension methods for adding the "init" command to
