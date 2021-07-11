@@ -2,6 +2,8 @@
 
 using McMaster.Extensions.CommandLineUtils;
 
+using AggregateGroot.Workspace.Cli.Commands.Workspaces;
+
 namespace AggregateGroot.Workspace.Cli.Commands.Init
 {
     /// <summary>
@@ -12,15 +14,24 @@ namespace AggregateGroot.Workspace.Cli.Commands.Init
         /// <summary>
         /// Creates a new instance of the <see cref="InitCommand"/> class.
         /// </summary>
-        public InitCommand()
+        /// <param name="workspace">
+        /// Required developer workspace to initialize.
+        /// </param>
+        public InitCommand(DeveloperWorkspace workspace)
         {
-            this.Name = "init";
-            this.Description = "Initializes the developer's workspace";
+            _workspace = workspace 
+                ?? throw new ArgumentNullException(nameof(workspace));
+
+            Name = "init";
+            Description = "Initializes the developer's workspace";
+
             this.HelpOption("-h|--help");
             this.OnExecute(() =>
             {
                 Console.WriteLine("Init...");
             });
         }
+
+        private readonly DeveloperWorkspace _workspace;
     }
 }

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Reflection;
-using AggregateGroot.Workspace.Cli.Commands.Init;
+
 using McMaster.Extensions.CommandLineUtils;
+
+using AggregateGroot.Workspace.Cli.Commands.Init;
+using AggregateGroot.Workspace.Cli.Commands.Workspaces;
 
 namespace AggregateGroot.Workspace.Cli
 {
@@ -27,7 +30,7 @@ namespace AggregateGroot.Workspace.Cli
             var application = new CommandLineApplication();
             application.HelpOption("-h|--help");
 
-            application.AddInitCommand();
+            application.AddInitCommand(new DeveloperWorkspace());
 
             application.OnExecute(() =>
             {
