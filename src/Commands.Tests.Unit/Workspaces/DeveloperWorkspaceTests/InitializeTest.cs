@@ -22,7 +22,7 @@ namespace AggregateGroot.Workspace.Cli.Commands.Tests.Unit.Workspaces.DeveloperW
         [ExcludeFromCodeCoverage]
         public void Null_WorkspaceSettings_Should_Throw_Exception()
         {
-            DeveloperWorkspace workspace = new();
+            DeveloperWorkspace workspace = new("/");
 
             ArgumentNullException exception = Assert.Throws<ArgumentNullException>(
                 () => workspace.Initialize(null));

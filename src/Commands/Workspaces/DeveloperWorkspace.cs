@@ -9,6 +9,17 @@ namespace AggregateGroot.Workspace.Cli.Commands.Workspaces
     public class DeveloperWorkspace
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="DeveloperWorkspace"/> class.
+        /// </summary>
+        /// <param name="configurationPath">
+        /// Required path to save the workspace configuration to.
+        public DeveloperWorkspace(string configurationPath)
+        {
+            _configurationPath = configurationPath 
+                ?? throw new ArgumentNullException(nameof(configurationPath));
+        }
+
+        /// <summary>
         /// Gets the default settings for the workspace.
         /// </summary>
         public IReadOnlyCollection<WorkspaceSetting> DefaultSettings 
@@ -33,6 +44,7 @@ namespace AggregateGroot.Workspace.Cli.Commands.Workspaces
             }
         }
 
+        private readonly string _configurationPath;
         private readonly List<WorkspaceSetting> _workspaceSettings = new();
     }
 }
