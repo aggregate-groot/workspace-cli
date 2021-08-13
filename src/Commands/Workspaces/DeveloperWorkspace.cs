@@ -9,6 +9,17 @@ namespace AggregateGroot.Workspace.Cli.Commands.Workspaces
     public class DeveloperWorkspace
     {
         /// <summary>
+        /// Creates a new instance of the <see cref="DeveloperWorkspace"/> class.
+        /// </summary>
+        /// <param name="configurationFilePath">
+        /// Required path to save the workspace configuration file to.
+        /// </param>
+        public DeveloperWorkspace(string configurationFilePath)
+        {
+            
+        }
+
+        /// <summary>
         /// Gets the default settings for the workspace.
         /// </summary>
         public IReadOnlyCollection<WorkspaceSetting> DefaultSettings 

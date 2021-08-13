@@ -16,7 +16,7 @@ namespace AggregateGroot.Workspace.Cli.Commands.Tests.Unit.Workspaces.DeveloperW
         [Fact]
         public void New_Instance_Should_Have_Expected_State()
         {
-            DeveloperWorkspace workspace = new();
+            DeveloperWorkspace workspace = new("/home");
 
             Assert.Equal(0, workspace.DefaultSettings.Count);
         }
