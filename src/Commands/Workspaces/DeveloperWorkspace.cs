@@ -13,7 +13,13 @@ namespace AggregateGroot.Workspace.Cli.Commands.Workspaces
         /// </summary>
         /// <param name="configurationPath">
         /// Required path to save the workspace configuration to.
-        public DeveloperWorkspace(string configurationPath)
+        /// </param>
+        /// <param name="workspaceSettings">
+        /// Required workspace settings.
+        /// </param>
+        public DeveloperWorkspace(
+            string configurationPath,
+            IEnumerable<WorkspaceSetting> workspaceSettings)
         {
             _configurationPath = configurationPath 
                 ?? throw new ArgumentNullException(nameof(configurationPath));
@@ -25,24 +31,24 @@ namespace AggregateGroot.Workspace.Cli.Commands.Workspaces
         public IReadOnlyCollection<WorkspaceSetting> DefaultSettings 
             => _workspaceSettings.AsReadOnly();
 
-        /// <summary>
-        /// Initializes the developer's workspace.
-        /// </summary>
-        /// <param name="workspaceSettings">
-        /// Required workspace settings used to initialize the developer's workspace.
-        /// </param>
-        public void Initialize(IEnumerable<WorkspaceSetting> workspaceSettings)
-        {
-            if (workspaceSettings is null)
-            {
-                throw new ArgumentNullException(nameof(workspaceSettings));
-            }
+        ///// <summary>
+        ///// Initializes the developer's workspace.
+        ///// </summary>
+        ///// <param name="workspaceSettings">
+        ///// Required workspace settings used to initialize the developer's workspace.
+        ///// </param>
+        //public void Initialize(IEnumerable<WorkspaceSetting> workspaceSettings)
+        //{
+        //    if (workspaceSettings is null)
+        //    {
+        //        throw new ArgumentNullException(nameof(workspaceSettings));
+        //    }
 
-            foreach (WorkspaceSetting setting in workspaceSettings)
-            {
-                _workspaceSettings.Add(setting);
-            }
-        }
+        //    foreach (WorkspaceSetting setting in workspaceSettings)
+        //    {
+        //        _workspaceSettings.Add(setting);
+        //    }
+        //}
 
         private readonly string _configurationPath;
         private readonly List<WorkspaceSetting> _workspaceSettings = new();

@@ -30,7 +30,7 @@ namespace AggregateGroot.Workspace.Cli
             var application = new CommandLineApplication();
             application.HelpOption("-h|--help");
 
-            application.AddInitCommand(new DeveloperWorkspace());
+            application.AddInitCommand(new DeveloperWorkspace("", new List<WorkspaceSetting>()));
 
             application.OnExecute(() =>
             {
