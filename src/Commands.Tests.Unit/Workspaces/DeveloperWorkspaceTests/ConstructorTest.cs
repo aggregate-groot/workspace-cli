@@ -20,5 +20,7 @@ namespace AggregateGroot.Workspace.Cli.Commands.Tests.Unit.Workspaces.DeveloperW
 
             Assert.Equal(0, workspace.DefaultSettings.Count);
         }
+
+        
     }
 }
