@@ -30,7 +30,7 @@ namespace AggregateGroot.Workspace.Cli
             var application = new CommandLineApplication();
             application.HelpOption("-h|--help");
 
-            application.AddInitCommand(new DeveloperWorkspace("", new List<WorkspaceSetting>()));
+            application.AddInitCommand(ConfigureWorkspace());
 
             application.OnExecute(() =>
             {
@@ -43,6 +43,29 @@ namespace AggregateGroot.Workspace.Cli
             });
 
             application.Execute(args);
+        }
+
+        /// <summary>
+        /// Configures the workspace.
+        /// </summary>
+        private static DeveloperWorkspace ConfigureWorkspace()
+        {
+            string configurationPath = Path.Combine(
+                Environment.GetFolderPath(
+                    Environment.SpecialFolder.LocalApplicationData,
+                    Environment.SpecialFolderOption.DoNotVerify), 
+                "Workspace-Cli");
+
+            List<WorkspaceSetting> initialSettings = new()
+            {
+                new WorkspaceSetting()
+                {
+                    Name = "SomeSetting",
+                    Prompt = "Some Setting:"
+                }
+            };
+
+            return new DeveloperWorkspace(configurationPath, initialSettings);
         }
     }
 }
