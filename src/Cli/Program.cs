@@ -61,7 +61,8 @@ namespace AggregateGroot.Workspace.Cli
                 new WorkspaceSetting()
                 {
                     Name = "SomeSetting",
-                    Prompt = "Some Setting:"
+                    Prompt = "Some Setting:",
+                    Value = "some-value"
                 }
             };
 

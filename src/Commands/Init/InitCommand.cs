@@ -28,8 +28,34 @@ namespace AggregateGroot.Workspace.Cli.Commands.Init
             this.HelpOption("-h|--help");
             this.OnExecute(() =>
             {
-                Console.WriteLine("Init...");
+                Console.WriteLine("Initializing the workspace...");
+                CreateUserConfiguration();
+
             });
+        }
+
+        private void CreateUserConfiguration()
+        {
+            foreach (WorkspaceSetting setting in _workspace.DefaultSettings)
+            {
+                string currentValue = setting.Value;
+                setting.Value = Prompt.GetString(setting.Prompt, currentValue);
+            }
+
+            //List<WorkspaceSetting> settings = new();
+            //foreach (WorkspaceSetting setting in Workspace.DefaultSettings)
+            //{
+            //    string defaultValue = Workspace.GetSetting(setting.Name)?.Value 
+            //                          ?? setting.DefaultValue;
+            //    WorkspaceSetting newSetting = setting with
+            //    {
+            //        Value = Prompt.GetString(setting.Prompt, defaultValue)
+            //    };
+                
+            //    settings.Add(newSetting);
+            //}
+            
+            //Workspace.Save(settings);
         }
 
         private readonly DeveloperWorkspace _workspace;
