@@ -3,6 +3,7 @@
 using McMaster.Extensions.CommandLineUtils;
 
 using AggregateGroot.Workspace.Cli.Commands.Workspaces;
+using System.Threading.Tasks;
 
 namespace AggregateGroot.Workspace.Cli.Commands.Init
 {
@@ -26,36 +27,23 @@ namespace AggregateGroot.Workspace.Cli.Commands.Init
             Description = "Initializes the developer's workspace";
 
             this.HelpOption("-h|--help");
-            this.OnExecute(() =>
+            this.OnExecute(async () =>
             {
                 Console.WriteLine("Initializing the workspace...");
-                CreateUserConfiguration();
+                await CreateUserConfigurationAsync();
 
             });
         }
 
-        private void CreateUserConfiguration()
+        private async Task CreateUserConfigurationAsync()
         {
-            foreach (WorkspaceSetting setting in _workspace.DefaultSettings)
+            foreach (WorkspaceSetting setting in _workspace.Settings)
             {
                 string currentValue = setting.Value;
                 setting.Value = Prompt.GetString(setting.Prompt, currentValue);
             }
 
-            //List<WorkspaceSetting> settings = new();
-            //foreach (WorkspaceSetting setting in Workspace.DefaultSettings)
-            //{
-            //    string defaultValue = Workspace.GetSetting(setting.Name)?.Value 
-            //                          ?? setting.DefaultValue;
-            //    WorkspaceSetting newSetting = setting with
-            //    {
-            //        Value = Prompt.GetString(setting.Prompt, defaultValue)
-            //    };
-                
-            //    settings.Add(newSetting);
-            //}
-            
-            //Workspace.Save(settings);
+            await _workspace.SaveAsync();
         }
 
         private readonly DeveloperWorkspace _workspace;

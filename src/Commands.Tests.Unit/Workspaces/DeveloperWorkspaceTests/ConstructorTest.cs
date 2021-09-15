@@ -1,4 +1,6 @@
-﻿using Xunit;
+﻿using System.Collections.Generic;
+
+using Xunit;
 
 using AggregateGroot.Workspace.Cli.Commands.Workspaces;
 
@@ -18,7 +20,7 @@ namespace AggregateGroot.Workspace.Cli.Commands.Tests.Unit.Workspaces.DeveloperW
         {
             DeveloperWorkspace workspace = new("", new List<WorkspaceSetting>());
 
-            Assert.Equal(0, workspace.DefaultSettings.Count);
+            Assert.Equal(0, workspace.Settings.Count);
         }
     }
 }

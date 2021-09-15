@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AggregateGroot.Workspace.Cli.Commands.Workspaces
 {
@@ -28,7 +29,7 @@ namespace AggregateGroot.Workspace.Cli.Commands.Workspaces
         /// <summary>
         /// Gets the default settings for the workspace.
         /// </summary>
-        public IReadOnlyCollection<WorkspaceSetting> DefaultSettings 
+        public IReadOnlyCollection<WorkspaceSetting> Settings 
             => _workspaceSettings.AsReadOnly();
 
         /// <summary>
