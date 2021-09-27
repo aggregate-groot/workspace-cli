@@ -5,6 +5,13 @@
         <TargetFramework>net6.0</TargetFramework>
         <AssemblyName>AggregateGroot.Workspace.Cli</AssemblyName>
         <RootNamespace>AggregateGroot.Workspace.Cli</RootNamespace>
+        <AssemblyVersion>0.1.0</AssemblyVersion>
+        <FileVersion>$(AssemblyVersion)</FileVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>AggregateGroot.Workspace.Cli</PackageId>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>ag</ToolCommandName>
+        <PackageVersion>$(AssemblyVersion)</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>

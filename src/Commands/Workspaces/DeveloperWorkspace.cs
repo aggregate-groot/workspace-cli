@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace AggregateGroot.Workspace.Cli.Commands.Workspaces
@@ -24,6 +27,8 @@ namespace AggregateGroot.Workspace.Cli.Commands.Workspaces
         {
             _configurationPath = configurationPath 
                 ?? throw new ArgumentNullException(nameof(configurationPath));
+
+            _workspaceSettings = workspaceSettings.ToList();
         }
 
         /// <summary>
@@ -35,9 +40,22 @@ namespace AggregateGroot.Workspace.Cli.Commands.Workspaces
         /// <summary>
         /// Saves the current workspace.
         /// </summary>
-        public Task SaveAsync()
+        public async Task SaveAsync()
         {
-            return Task.CompletedTask;
+            string json = JsonSerializer.Serialize(
+                Settings,
+                new JsonSerializerOptions()
+                {
+                    WriteIndented = true
+                });
+
+            string configurationFilePath = Path.Combine(_configurationPath, "workspace-settings.json");
+
+            Console.WriteLine($"Saving workspace configuration to {configurationFilePath}.");
+
+            Directory.CreateDirectory(_configurationPath);
+
+            await File.WriteAllTextAsync(configurationFilePath, json);
         }
 
         private readonly string _configurationPath;

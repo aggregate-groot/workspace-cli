@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using McMaster.Extensions.CommandLineUtils;
 
 using AggregateGroot.Workspace.Cli.Commands.Workspaces;
-using System.Threading.Tasks;
 
 namespace AggregateGroot.Workspace.Cli.Commands.Init
 {
