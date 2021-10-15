@@ -35,6 +35,10 @@ namespace AggregateGroot.Workspace.Cli.Commands.Init
             });
         }
 
+        /// <summary>
+        /// Prompts user for workspace settings and save the configuration once all settings
+        /// are supplied.
+        /// </summary>
         private async Task CreateUserConfigurationAsync()
         {
             foreach (WorkspaceSetting setting in _workspace.Settings)

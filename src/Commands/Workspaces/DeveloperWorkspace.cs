@@ -49,13 +49,24 @@ namespace AggregateGroot.Workspace.Cli.Commands.Workspaces
                     WriteIndented = true
                 });
 
-            string configurationFilePath = Path.Combine(_configurationPath, "workspace-settings.json");
+            //string configurationFilePath = Path.Combine(_configurationPath, "workspace-settings.json");
+            string configurationDirectory = Path.GetDirectoryName(_configurationPath);
+            Directory.CreateDirectory(configurationDirectory);
 
-            Console.WriteLine($"Saving workspace configuration to {configurationFilePath}.");
+            Console.WriteLine($"Saving workspace configuration to {_configurationPath}.");
 
-            Directory.CreateDirectory(_configurationPath);
+            await File.WriteAllTextAsync(_configurationPath, json);
+        }
 
-            await File.WriteAllTextAsync(configurationFilePath, json);
+        /// <summary>
+        /// Adds the settings required for the workspace to operate.
+        /// </summary>
+        public void AddRequiredSettings()
+        {
+            _workspaceSettings.Add(new WorkspaceSetting()
+            {
+
+            });
         }
 
         private readonly string _configurationPath;
