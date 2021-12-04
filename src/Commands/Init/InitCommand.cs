@@ -41,11 +41,11 @@ namespace AggregateGroot.Workspace.Cli.Commands.Init
         /// </summary>
         private async Task CreateUserConfigurationAsync()
         {
-            foreach (WorkspaceSetting setting in _workspace.Settings)
-            {
-                string currentValue = setting.Value;
-                setting.Value = Prompt.GetString(setting.Prompt, currentValue);
-            }
+            //foreach (WorkspaceSetting setting in _workspace.Settings)
+            //{
+            //    string currentValue = setting.Value;
+            //    setting.Value = Prompt.GetString(setting.Prompt, currentValue);
+            //}
 
             await _workspace.SaveAsync();
         }

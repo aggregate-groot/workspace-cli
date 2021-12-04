@@ -58,17 +58,17 @@ namespace AggregateGroot.Workspace.Cli
                     Environment.SpecialFolderOption.DoNotVerify), 
                 "Workspace-Cli");
 
-            List<WorkspaceSetting> initialSettings = new()
+            List<WorkspaceSettingDefinition> settingDefinitions = new()
             {
-                new WorkspaceSetting()
+                new WorkspaceSettingDefinition()
                 {
                     Name = "SomeSetting",
                     Prompt = "Some Setting:",
-                    Value = "some-value"
+                    Default = "some-value"
                 }
             };
 
-            return new DeveloperWorkspace(configurationPath, initialSettings);
+            return new DeveloperWorkspace(configurationPath, settingDefinitions);
         }
     }
 }

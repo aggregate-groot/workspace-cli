@@ -16,15 +16,16 @@ namespace AggregateGroot.Workspace.Cli.Commands.Tests.Unit.Workspaces.DeveloperW
     public class SaveAsyncTest
     {
         /// <summary>
-        /// Tests that the workspace settings are saved to the expected configuration
-        /// path.
+        /// Tests that the workspace settings are saved to the expected
+        /// configuration path.
         /// </summary>
         [Fact]
         public async Task Should_Save_To_Configuration_Path()
         {
             string configurationFilePath = GetConfigurationFilePath();
 
-            DeveloperWorkspace workspace = new(configurationFilePath, new List<WorkspaceSetting>());
+            DeveloperWorkspace workspace 
+                = new(configurationFilePath, new List<WorkspaceSettingDefinition>());
             await workspace.SaveAsync();
 
             bool configurationSaved = File.Exists(configurationFilePath);

@@ -20,10 +20,7 @@ namespace AggregateGroot.Workspace.Cli.Commands.Tests.Unit.Workspaces.WorkspaceS
             WorkspaceSetting setting = new();
 
             Assert.Null(setting.Name);
-            Assert.Null(setting.Default);
-            Assert.Null(setting.Prompt);
             Assert.Null(setting.Value);
-            Assert.Equal(WorkspaceSettingType.String, setting.Type);
         }
     }
 }
