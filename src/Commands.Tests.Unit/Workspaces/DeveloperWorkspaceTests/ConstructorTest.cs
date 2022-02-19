@@ -11,16 +11,6 @@ namespace AggregateGroot.Workspace.Cli.Commands.Tests.Unit.Workspaces.DeveloperW
     /// </summary>
     public class ConstructorTest
     {
-        /// <summary>
-        /// Tests that a new instance of the <see cref="Workspace"/> class has
-        /// the expected state.
-        /// </summary>
-        [Fact]
-        public void New_Instance_Should_Have_Expected_State()
-        {
-            DeveloperWorkspace workspace = new("", new List<WorkspaceSettingDefinition>());
-
-            Assert.Equal(0, workspace.Settings.Count);
-        }
+        
     }
 }
