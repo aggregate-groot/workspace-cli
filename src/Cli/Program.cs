@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
 
 using McMaster.Extensions.CommandLineUtils;
-
-using AggregateGroot.Workspace.Cli.Commands.Init;
-using AggregateGroot.Workspace.Cli.Commands.Workspaces;
 
 namespace AggregateGroot.Workspace.Cli
 {
@@ -29,10 +24,8 @@ namespace AggregateGroot.Workspace.Cli
                 .Version
                 .ToString();
 
-            var application = new CommandLineApplication();
+            CommandLineApplication application = new ();
             application.HelpOption("-h|--help");
-
-            application.AddInitCommand(ConfigureWorkspace());
 
             application.OnExecute(() =>
             {
@@ -47,28 +40,5 @@ namespace AggregateGroot.Workspace.Cli
             application.Execute(args);
         }
 
-        /// <summary>
-        /// Configures the workspace.
-        /// </summary>
-        private static DeveloperWorkspace ConfigureWorkspace()
-        {
-            string configurationPath = Path.Combine(
-                Environment.GetFolderPath(
-                    Environment.SpecialFolder.LocalApplicationData,
-                    Environment.SpecialFolderOption.DoNotVerify), 
-                "Workspace-Cli");
-
-            List<WorkspaceSettingDefinition> settingDefinitions = new()
-            {
-                new WorkspaceSettingDefinition()
-                {
-                    Name = "SomeSetting",
-                    Prompt = "Some Setting:",
-                    Default = "some-value"
-                }
-            };
-
-            return new DeveloperWorkspace(configurationPath, settingDefinitions);
-        }
     }
 }
