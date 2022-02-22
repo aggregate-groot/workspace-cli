@@ -1,0 +1,32 @@
+name: CI Source
+
+on:
+  push:
+    branches: 
+      - 'develop'
+    paths:
+      - 'src/**'
+  pull_request:
+    branches:
+      - 'master'
+    paths:
+      - 'src/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+        include-prerelease: True
+    - name: Restore dependencies
+      run: dotnet restore src/Workspace.Cli.sln
+    - name: Build
+      run: dotnet build src/Workspace.Cli.sln --no-restore
+    - name: Test
+      run: dotnet test src/Workspace.Cli.sln --no-build --verbosity normal

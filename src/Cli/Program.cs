@@ -3,9 +3,6 @@ using System.Reflection;
 
 using McMaster.Extensions.CommandLineUtils;
 
-using AggregateGroot.Workspace.Cli.Commands.Init;
-using AggregateGroot.Workspace.Cli.Commands.Workspaces;
-
 namespace AggregateGroot.Workspace.Cli
 {
     /// <summary>
@@ -27,10 +24,8 @@ namespace AggregateGroot.Workspace.Cli
                 .Version
                 .ToString();
 
-            var application = new CommandLineApplication();
+            CommandLineApplication application = new ();
             application.HelpOption("-h|--help");
-
-            application.AddInitCommand(new DeveloperWorkspace());
 
             application.OnExecute(() =>
             {
@@ -44,5 +39,6 @@ namespace AggregateGroot.Workspace.Cli
 
             application.Execute(args);
         }
+
     }
 }
