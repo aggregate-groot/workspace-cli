@@ -1,11 +1,15 @@
 ﻿using System.Reflection;
+
 using McMaster.Extensions.CommandLineUtils;
+
+using AggregateGroot.CliTools.Commands.Project;
 
 namespace AggregateGroot.Workspace.Cli
 {
     /// <summary>
     /// Represents the root command for the application.
     /// </summary>
+    [Subcommand(typeof(ProjectCliCommand))]
     public class RootCommand
     {
         /// <summary>

@@ -10,7 +10,6 @@ namespace AggregateGroot.Workspace.Cli
     /// </summary>
     internal class Program
     {
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
