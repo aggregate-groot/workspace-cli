@@ -1,4 +1,6 @@
-﻿using McMaster.Extensions.CommandLineUtils;
+﻿using System.Diagnostics.CodeAnalysis;
+
+using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
 
 using AggregateGroot.CliTools.Commands;
@@ -8,6 +10,7 @@ namespace AggregateGroot.Workspace.Cli
     /// <summary>
     /// Represents the main command line application.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     internal class Program
     {
         /// <summary>

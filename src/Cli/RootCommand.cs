@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 
 using McMaster.Extensions.CommandLineUtils;
 
@@ -9,6 +10,7 @@ namespace AggregateGroot.Workspace.Cli
     /// <summary>
     /// Represents the root command for the application.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     [Subcommand(typeof(ProjectCliCommand))]
     public class RootCommand
     {

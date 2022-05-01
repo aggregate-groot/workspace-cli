@@ -23,6 +23,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Commands\Commands.csproj" />
+      <ProjectReference Include="..\TestAssembly\TestAssembly.csproj" />
     </ItemGroup>
 
 </Project>

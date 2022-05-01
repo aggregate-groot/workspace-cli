@@ -36,7 +36,7 @@ namespace AggregateGroot.Workspace.Cli.Commands.Tests.Unit.Project.AssemblyVersi
             Assert.Equal(AssemblyVersionResponseCode.PathNotProvided, result);
 
             _errorWriterMock.Verify(error 
-                    => error.Write("Please provide the path of the assembly to get the version for."),
+                    => error.WriteLine("Please provide the path of the assembly to get the version for."),
                 Times.Once);
         }
 
@@ -57,8 +57,28 @@ namespace AggregateGroot.Workspace.Cli.Commands.Tests.Unit.Project.AssemblyVersi
             Assert.Equal(AssemblyVersionResponseCode.AssemblyNotFound, result);
 
             _errorWriterMock.Verify(error
-                    => error.Write(It.Is<string>(message =>
+                    => error.WriteLine(It.Is<string>(message =>
                         message.StartsWith("Could not find assembly 'fake.dll' in directory "))),
+                Times.Once);
+        }
+
+        /// <summary>
+        /// Tests that the version in the assembly metadata is printed to the console.
+        /// </summary>
+        [Fact]
+        public void Should_Print_Expected_AssemblyVersion()
+        {
+            const string path = "TestAssembly.dll";
+
+            AssemblyVersionCliCommand command = CreateCommand(path);
+
+            AssemblyVersionResponseCode result
+                = (AssemblyVersionResponseCode)command.OnExecute(new CommandLineApplication());
+
+            Assert.Equal(AssemblyVersionResponseCode.Success, result);
+
+            _textWriterMock.Verify(text
+                    => text.WriteLine("2.4.6.8"),
                 Times.Once);
         }
 

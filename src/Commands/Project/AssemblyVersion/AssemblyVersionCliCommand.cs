@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
+
 using McMaster.Extensions.CommandLineUtils;
 
 namespace AggregateGroot.CliTools.Commands.Project.AssemblyVersion
@@ -32,7 +34,7 @@ namespace AggregateGroot.CliTools.Commands.Project.AssemblyVersion
         {
             if (string.IsNullOrWhiteSpace(Path))
             {
-                _console.Error.Write(
+                _console.Error.WriteLine(
                     "Please provide the path of the assembly to get the version for.");
 
                 app.ShowHelp();
@@ -43,14 +45,15 @@ namespace AggregateGroot.CliTools.Commands.Project.AssemblyVersion
             if (!File.Exists(Path))
             {
                 string message = BuildAssemblyNotFoundMessage(Path);
-                _console.Error.Write(
+                _console.Error.WriteLine(
                     BuildAssemblyNotFoundMessage(Path));
-
-                app.ShowHelp();
 
                 return (int)AssemblyVersionResponseCode.AssemblyNotFound;
             }
-            
+
+            Assembly assembly = Assembly.LoadFrom(Path);
+            _console.WriteLine(assembly.GetName()?.Version?.ToString() ?? string.Empty);
+
             return (int)AssemblyVersionResponseCode.Success;
         }
 
