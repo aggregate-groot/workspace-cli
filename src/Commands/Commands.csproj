@@ -2,12 +2,13 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <AssemblyName>AggregateGroot.Workspace.Cli.Commands</AssemblyName>
-        <RootNamespace>AggregateGroot.Workspace.Cli.Commands</RootNamespace>
+        <AssemblyName>AggregateGroot.CliTools.Commands</AssemblyName>
+        <RootNamespace>AggregateGroot.CliTools.Commands</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="3.1.0" />
+      <PackageReference Include="CliWrap" Version="3.4.1" />
+      <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.0.1" />
     </ItemGroup>
 
 </Project>
