@@ -21,10 +21,23 @@ namespace AggregateGroot.CliTools.Commands.Project.AssemblyVersion
                 ?? throw new ArgumentNullException(nameof(prompt));
         }
 
+        /// <summary>
+        /// Gets or initializes the path of the assembly.
+        /// </summary>
+        [Argument(0, Description = "The path to the assembly to get the version for.")]
+        public string Path { get; init; }
+
         /// <inheritdoc />
         public override int OnExecute(CommandLineApplication app)
         {
-            app.ShowHelp();
+            if (string.IsNullOrWhiteSpace(Path))
+            {
+                _console.Error.Write(
+                    "Please provide the path of the assembly to get the version for.");
+                app.ShowHelp();
+                return 2;
+            }
+            
             return 1;
         }
 
