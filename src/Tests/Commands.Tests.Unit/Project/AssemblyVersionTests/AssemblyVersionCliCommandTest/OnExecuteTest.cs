@@ -29,9 +29,9 @@ namespace AggregateGroot.Workspace.Cli.Commands.Tests.Unit.Project.AssemblyVersi
         {
             AssemblyVersionCliCommand command = CreateCommand(path);
 
-            int result = command.OnExecute(new CommandLineApplication());
+            AssemblyVersionResponseCode result = command.OnExecute();
 
-            Assert.Equal(2, result);
+            Assert.Equal(AssemblyVersionResponseCode.PathNotProvided, result);
 
             _errorWriterMock.Verify(error 
                     => error.Write("Please provide the path of the assembly to get the version for."),

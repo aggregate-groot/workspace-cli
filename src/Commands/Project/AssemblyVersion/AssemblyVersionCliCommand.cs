@@ -8,7 +8,7 @@ namespace AggregateGroot.CliTools.Commands.Project.AssemblyVersion
     /// Represents the CLI command for getting the version of a .NET assembly.
     /// </summary>
     [Command("assembly-version", Description = "Get the version of an assembly in a project.")]
-    public class AssemblyVersionCliCommand : CliCommand
+    public class AssemblyVersionCliCommand
     {
         /// <summary>
         /// Creates a new instance of the <see cref="AssemblyVersionCliCommand"/> class.
@@ -27,18 +27,20 @@ namespace AggregateGroot.CliTools.Commands.Project.AssemblyVersion
         [Argument(0, Description = "The path to the assembly to get the version for.")]
         public string Path { get; init; }
 
-        /// <inheritdoc />
-        public override int OnExecute(CommandLineApplication app)
+        /// <summary>
+        /// Executes the command.
+        /// </summary>
+        public AssemblyVersionResponseCode OnExecute()
         {
             if (string.IsNullOrWhiteSpace(Path))
             {
                 _console.Error.Write(
                     "Please provide the path of the assembly to get the version for.");
-                app.ShowHelp();
-                return 2;
+
+                return AssemblyVersionResponseCode.PathNotProvided;
             }
             
-            return 1;
+            return AssemblyVersionResponseCode.Success;
         }
 
         private readonly IConsole _console;
