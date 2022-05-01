@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+
 using McMaster.Extensions.CommandLineUtils;
 using Moq;
 using Xunit;
@@ -29,12 +30,35 @@ namespace AggregateGroot.Workspace.Cli.Commands.Tests.Unit.Project.AssemblyVersi
         {
             AssemblyVersionCliCommand command = CreateCommand(path);
 
-            AssemblyVersionResponseCode result = command.OnExecute();
+            AssemblyVersionResponseCode result 
+                = (AssemblyVersionResponseCode)command.OnExecute(new CommandLineApplication());
 
             Assert.Equal(AssemblyVersionResponseCode.PathNotProvided, result);
 
             _errorWriterMock.Verify(error 
                     => error.Write("Please provide the path of the assembly to get the version for."),
+                Times.Once);
+        }
+
+        /// <summary>
+        /// Tests that an error is printed when the assembly is not found at the
+        /// path provided.
+        /// </summary>
+        [Fact]
+        public void Should_Print_Error_When_Assembly_Not_Found()
+        {
+            const string path = "/fake/path/fake.dll";
+
+            AssemblyVersionCliCommand command = CreateCommand(path);
+
+            AssemblyVersionResponseCode result
+                = (AssemblyVersionResponseCode)command.OnExecute(new CommandLineApplication());
+
+            Assert.Equal(AssemblyVersionResponseCode.AssemblyNotFound, result);
+
+            _errorWriterMock.Verify(error
+                    => error.Write(It.Is<string>(message =>
+                        message.StartsWith("Could not find assembly 'fake.dll' in directory "))),
                 Times.Once);
         }
 
@@ -58,6 +82,7 @@ namespace AggregateGroot.Workspace.Cli.Commands.Tests.Unit.Project.AssemblyVersi
             _consoleMock
                 .SetupGet(console => console.Error)
                 .Returns(_errorWriterMock.Object);
+
             return new AssemblyVersionCliCommand(
                 _consoleMock.Object,
                 _promptMock.Object)
