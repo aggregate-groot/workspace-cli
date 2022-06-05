@@ -16,14 +16,14 @@ namespace AggregateGroot.CliTools.Commands
         /// <inheritdoc />
         public async Task<string> ExecuteAsync(string command, string arguments)
         {
-            if (arguments == null)
-            {
-                throw new ArgumentNullException(nameof(arguments));
-            }
-
             if (string.IsNullOrWhiteSpace(command))
             {
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(command));
+            }
+
+            if (arguments == null)
+            {
+                throw new ArgumentNullException(nameof(arguments));
             }
 
             StringBuilder outputBuffer = new StringBuilder();
