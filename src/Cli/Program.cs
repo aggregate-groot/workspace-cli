@@ -4,6 +4,7 @@ using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
 
 using AggregateGroot.CliTools.Commands;
+using AggregateGroot.CliTools.Commands.Git;
 
 namespace AggregateGroot.Workspace.Cli
 {
@@ -25,6 +26,7 @@ namespace AggregateGroot.Workspace.Cli
                 .AddSingleton<ICliProvider, WrappedCliProvider>()
                 .AddSingleton<IPrompt, WrappedPrompt>()
                 .AddSingleton(PhysicalConsole.Singleton)
+                .AddSingleton<IGitProvider, CliGitProvider>()
                 .BuildServiceProvider();
 
             CommandLineApplication<RootCommand> application = new ();

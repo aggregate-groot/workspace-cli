@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-
+using AggregateGroot.CliTools.Commands.Git;
 using McMaster.Extensions.CommandLineUtils;
 
 using AggregateGroot.CliTools.Commands.Project;
@@ -11,7 +11,9 @@ namespace AggregateGroot.Workspace.Cli
     /// Represents the root command for the application.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    [Subcommand(typeof(ProjectCliCommand))]
+    [Subcommand(
+        typeof(ProjectCliCommand),
+        typeof(GitCliCommand))]
     public class RootCommand
     {
         /// <summary>
